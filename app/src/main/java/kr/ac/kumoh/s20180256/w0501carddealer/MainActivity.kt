@@ -11,20 +11,57 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         //setContentView(R.layout.activity_main)
         setContentView(binding.root)
-        val c = Random.nextInt(52)
-        Log.i("Test", "$c : ${getCardName(c)}")
+        //Log.i("Test", "$c : ${getCardName(c)}")
+        //val c = Random.nextInt(52)
+        // binding.btnDeal.setOnClickListener {
+            //val res = resources.getIdentifier(
+                //getCardName(Random.nextInt(52)),
+                //"drawable",
+                //packageName)
+            //binding.card1.setImageResource(res)
 
+        //}
+
+        /*
         val res = resources.getIdentifier(
             getCardName(c),
             "drawable",
             packageName
         )
         binding.card1.setImageResource(res)
-        //binding.card1.setImageResource(R.drawable.c_2_of_hearts)
+        */
+        binding.btnDeal.setOnClickListener {
+            val c = IntArray(5)
+            val res = IntArray(5)
+
+            //for (i in 0..4)
+            //for (i in 0 until 5)
+            //for (i in 0 until c.size)
+            for (i in c.indices) {
+                c[i] = Random.nextInt(52)
+
+                Log.i("Test", "${c[i]} : " +
+                        "${getCardName(c[i])}")
+
+                res[i] = resources.getIdentifier(
+                    getCardName(c[i]),
+                    "drawable",
+                    packageName
+                )
+            }
+
+            //card1.setImageResource(R.drawable.c_2_of_hearts)
+            binding.card1.setImageResource(res[0])
+            binding.card2.setImageResource(res[1])
+            binding.card3.setImageResource(res[2])
+            binding.card4.setImageResource(res[3])
+            binding.card5.setImageResource(res[4])
+
+        }
+
     }
 
     private fun getCardName(c: Int) : String {
